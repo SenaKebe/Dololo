@@ -8,7 +8,7 @@ const server = express();
 
 const host = process.env.SERVER_HOST;
 const port = process.env.SERVER_PORT;
-console.log(port);
+/* console.log(port); */
 
 
 server.get('/', async (req,res) =>{
@@ -20,5 +20,9 @@ server.listen(port,host, (err)=>{
     console.log(`server is running on http://${host}:${port}`);
 }
 )
+
+
+
+
 
 

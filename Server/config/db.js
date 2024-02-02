@@ -10,6 +10,16 @@ user: process.env.DB_USER,
 database: process.env.DB_NAME
 });
 
+
+
+
+
+
+
+
+
+
+
 async function query (sql,param){
     const [rows,fields] = await pool.execute(sql,param);
     return rows;
