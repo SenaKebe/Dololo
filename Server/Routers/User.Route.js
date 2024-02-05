@@ -1,6 +1,13 @@
 const express = require('express');
-const UserRoutes = express.Router();
+const userRoutes = express.Router();
+const userController = require('../controllers/user.controller');
 
-const UserController = require("../Controllers/User.Controller");
+userRoutes.get('/api/user',userController.getAllUsers);
+userRoutes.get('/api/user',userController.getSingleUser);
+userRoutes.get('/api/usersInfo',userController.getAllUsersInfo);
+userRoutes.get('/api/user/:id',userController.getSingleUser);
+userRoutes.put('/api/user/:id',userController.updateSingleUser);
+userRoutes.post('/api/user',userController.registerSingleUser);
+userRoutes.delete('/api/user/:id',userController.deleteSingleUser);
 
-module.exports = UserRoutes;
+module.exports =userRoutes;

@@ -1,4 +1,4 @@
-const CashierQuery = require('../Queries/Cashier.Query');
+const CashierQuery = require('../queries/cashier.query');
 const query = require('../config/db');
 
 const CahierService = {
