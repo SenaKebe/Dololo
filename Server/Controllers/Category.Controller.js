@@ -3,13 +3,15 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const categoryController ={
-     getAllCategories: async(req,res)=>{
-        const rows = categoryService.getAllCategories;
-        res.send(200).json({
-       success: true,
-       data : rows
-        })
+     
+  
+  getAllCategories: async(req,res)=>{
+      const rows =  await categoryService.getAllCategories();
+      return  res.status(200).json({success: true, data : rows})
      } , 
+
+
+
      getSingleCategories: async(req,res)=>{
         const id = req.params.id.substring(1);
         const rows = await categoryService.getsingleCategory(id)
@@ -59,13 +61,15 @@ req.body.categoryId = id;
   }
  },
  createSingleCategory : async(req,res)=>{
-const {categoryName, amharicName, imageURL} = req.body
-if(!categoryName || !amharicName || imageURL){
-  return res.status(500).json({
-success : 'false',
-message: `All fields are required`
-  })
-}
+  const newFileName = `http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}/uploads/`+req.file.filename;
+  req.body.imageUrl = newFileName.toString();
+  const {categoryName, amharicName, imageURL} = req.body
+  if(!categoryName || !amharicName || imageURL){
+    return res.status(500).json({
+  success : 'false',
+  message: `All fields are required`
+    })
+  }
 const id= req.params.id.substring(1)
 isCategoryAdded= await categoryService.createSingleCategory
 if(!isCategoryAdded){

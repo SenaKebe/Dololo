@@ -1,6 +1,6 @@
 const express = require('express');
 const OrderRoutes = express.Router();
 
-const OrderController = require("../Controllers/Order.Controller");
+const  orderController = require("../Controllers/order.controller");
 
 module.exports = OrderRoutes;

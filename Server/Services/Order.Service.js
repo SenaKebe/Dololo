@@ -1,5 +1,5 @@
 const query = require('../config/db');
-const orderQuery = require('../querys/order.query');
+const orderQuery = require('../queries/order.query');
 
 const orderService = {
    getAllOrder: async (id)=>{

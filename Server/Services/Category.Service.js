@@ -1,20 +1,20 @@
-const categoryQuery = require('../queries/category.query');
+const categoryQuery = require('../queries/Category.Query');
 const query = require('../config/db');
 
 const categoryService = {
  getAllCategories : async() =>{
-/*     try {
+   try {
         const rows = await query (categoryQuery.getAllCategories)
         return rows
     } catch (e) {
         console.log(e);
         return null
-    } */
+    } 
  },
  getsingleCategory : async(categoryId)=> {
     try {
-       rows = await query (categoryQuery.getSingleCategory, [categoryId])
-       return rows 
+       const  rows = await query (categoryQuery.getSingleCategory, [categoryId])
+      return rows 
     } catch (e) {
         console.log(e);
         return null
@@ -23,7 +23,7 @@ const categoryService = {
  },
  updateSingleCategory: async(data) =>{
     try {
-        rows = await query(categoryQuery.updateSingleCategory,[data.categoryId,data.categoryName, data.amharicName,data.imageURL])
+       const  rows = await query(categoryQuery.updateSingleCategory,[data.categoryId,data.categoryName, data.amharicName,data.imageURL])
         return rows;
     } catch (e) {
         console.log(e);
@@ -32,7 +32,7 @@ const categoryService = {
  }, 
  deleteSingleCategory: async(categoryId)=>{
     try {
-        rows = await query(categoryQuery.deleteSingleCategory,[categoryId])
+       const  rows = await query(categoryQuery.deleteSingleCategory,[categoryId])
         return rows
     } catch (e) {
         console.log(e);
@@ -41,7 +41,7 @@ const categoryService = {
  },
  createSingleCategory: async(data)=>{
     try {
-        rows = await query(categoryQuery.createSingleCategory,[data.categoryName,data.amharicName,data.imageURL])
+        const rows = await query(categoryQuery.createSingleCategory,[data.categoryName,data.amharicName,data.imageURL])
         return rows;
     } catch (e) {
        console.log(e);

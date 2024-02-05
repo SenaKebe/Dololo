@@ -75,8 +75,8 @@ const userController ={
             message: 'all fields are required '
           });
        }
-       req.body.id = id;
-                // encript password
+       req.body.id = id;  
+       // encript password
       const saltRounds = 10; // Specify a number of rounds
       const salt = bcrypt.genSaltSync(saltRounds);
       req.body.password = bcrypt.hashSync(password, salt);

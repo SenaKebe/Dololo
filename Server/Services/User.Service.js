@@ -1,5 +1,5 @@
 const query = require('../config/db');
-const userQuery = require('../querys/user.query');
+const userQuery = require('../queries/user.query');
 
 const userService = {
    getAllUser: async ()=>{
