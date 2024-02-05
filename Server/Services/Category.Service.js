@@ -3,13 +3,13 @@ const query = require('../config/db');
 
 const categoryService = {
  getAllCategories : async() =>{
-    try {
+/*     try {
         const rows = await query (categoryQuery.getAllCategories)
         return rows
     } catch (e) {
         console.log(e);
         return null
-    }
+    } */
  },
  getsingleCategory : async(categoryId)=> {
     try {
