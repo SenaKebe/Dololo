@@ -1,10 +1,16 @@
 const consumableQuery ={
-    getAllConsumables: 'SELECT * from consumables;',
-    getSingleConsumableById: 'SELECT * from consumables where consumableId = ?;',
-    getConsumableByCategory: 'SELECT * from consumables where categoryId = ?;',
-    getConsumableByUser: 'SELECT * from consumables where id = userId ?;',
-    updateSingleConsumable: `UPDATE consumables set consumableName =? , amharicName = ?, price =?, imageURL = ?;`,
+    getAllConsumables: `SELECT consumables.*,  category.categoryName AS categoryName
+    FROM consumables
+    JOIN category ON consumables.categoryId = category.categoryId;
+    ;`,
+    getSingleConsumableById: `SELECT * from consumables where consumableId = ?;`, 
+    getConsumableByCategory: `SELECT * from consumables where categoryId = ?;`,
+    getConsumableByUser: `SELECT * from consumables where userId = ?;`,
+    updateSingleConsumable: `UPDATE consumables set categoryId = ? , consumableName =? , amharicName = ?, price =? where foodId = ?;`,
     deleteSingleConsumable: `DELETE from consumables where consumableId = ?`,
-    createSingleCategory: `INSERT  into consumables (consumableId, consumableName, amharicName, price, imageURL) values (?,?,?,?,?) `
+    createSingleConsumable: `INSERT  into consumables (categoryId, consumableName, amharicName, price, imageURL) values (?,?,?,?,?); ` 
 }
  module.exports = consumableQuery;
+
+
+

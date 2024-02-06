@@ -1,5 +1,5 @@
 const userQuery = {
-getAllUser: `SELECT *from users`,
+getAllUsers: `SELECT *from users`,
 getAllUsersInfo : `SELECT u.userId,u.role,u.username, p.firstname, p.lastname, p.gender
 FROM huludeig_dololo.users u
 JOIN huludeig_dololo.profile p ON u.userId = p.userId;`,

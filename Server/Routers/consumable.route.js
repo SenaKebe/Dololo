@@ -5,7 +5,7 @@ const consumableController = require('../controllers/consumable.controller');
 
 
 consumableRoutes.get('/api/consumable',consumableController.getAllConsumables);
-consumableRoutes.get('/api/consumable/:id',consumableController.getSingleConsumableById);
+consumableRoutes.get('/api/consumable/:id',consumableController.getSingleConsumableById); 
 consumableRoutes.get('/api/consumableByCategory/:id',consumableController.getConsumableByCategory);
 consumableRoutes.get('/api/consumableByUser/:id',consumableController.getConsumableByUser);
 consumableRoutes.put('/api/consumable/:id',consumableController.updateSingleConsumable);

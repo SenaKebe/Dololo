@@ -1,4 +1,4 @@
-const categoryQuery = require('../queries/Category.Query');
+const categoryQuery = require('../queries/category.query');
 const query = require('../config/db');
 
 const categoryService = {

@@ -1,4 +1,3 @@
-
 const consumableQuery = require('../queries/consumable.query');
 const query = require('../config/db');
 
@@ -13,7 +12,7 @@ getAllConsumables: async()=>{
         return null
     }
 },
-getSingleConsumableById: async(consumableId)=>{
+ getSingleConsumableById: async(consumableId)=>{
     try {
         const rows = query(consumableQuery.getSingleConsumableById,[consumableId])
         return rows
@@ -22,6 +21,8 @@ getSingleConsumableById: async(consumableId)=>{
         return null;
     }
 },
+
+
 getConsumableByCategory: async(categoryId)=>{
     try {
         const rows= query(consumableQuery.getConsumableByCategory,[categoryId])
@@ -33,7 +34,7 @@ getConsumableByCategory: async(categoryId)=>{
 },
 getConsumableByUser: async(userId)=>{
 try {
-    const rows= query(categoryQuery.getConsumableByUser,[userId])
+    const rows= query(consumableQuery.getConsumableByUser,[userId])
     return rows
 } catch (e) {
     console.log(e);
@@ -42,7 +43,7 @@ try {
 },
 updateSingleConsumable: async(data)=>{
     try {
-        const rows= query(categoryQuery.updateSingleConsumable,[data.consumableName,data.amharicName,data.price,data.imageURL])
+        const rows= await query(consumableQuery.updateSingleConsumable,[data.consumableName,data.amharicName,data.price,data.consumableId])
         return rows
     } catch (e) {
         console.log(e);
@@ -60,12 +61,12 @@ deleteSingleConsumable: async(consumableId)=>{
 },
 createSingleConsumable: async(data)=>{
     try {
-        rows = await query(consumableQuery.createSingleCategory,[data.consumableId,data.consumableName,data.amharicName,data.price,data.imageURL])
+        rows = await query(consumableQuery.createSingleCategory,[data.consumableId,data.consumableName,data.amharicName,data.price,"data.imageURL"])
     } catch (e) {
         console.log(e);
         return null
     }
-},
+}, 
 }
 
 module.exports =consumableService;

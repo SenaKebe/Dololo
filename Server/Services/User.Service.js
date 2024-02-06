@@ -2,7 +2,7 @@ const query = require('../config/db');
 const userQuery = require('../queries/user.query');
 
 const userService = {
-   getAllUser: async ()=>{
+   getAllUsers: async ()=>{
      try{
       const rows = await query(userQuery.getAllUsers);
       return rows;
@@ -84,7 +84,7 @@ const userService = {
       }
  
     },
-    deleteSingleUsersProfile: async (id)=>{
+    deleteSingleUserProfile: async (id)=>{
       try{
        const rows = await query(userQuery.deleteSingleUserProfile,[id]);
        return rows;

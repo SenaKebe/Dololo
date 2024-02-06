@@ -1,4 +1,7 @@
-const consumableService = require("../services/consumable.service")
+const consumableService = require('../services/consumable.service')
+const dotenv = require('dotenv');
+dotenv.config();
+const multer= require('../config/multer')
 const consumableController={
 
     getAllConsumables: async(req,res)=>{
@@ -8,16 +11,17 @@ const consumableController={
         data : rows
      });
  },
- getSingleConsumableById: async(req,res)=>{
-    const id = req.params.id.substring(id)
+  getSingleConsumableById: async(req,res)=>{
+ const id = req.params.id.substring(1)
+ const rows = await consumableService.getSingleConsumableById(id);
     res.status(200).json({
         success: true,
         data: rows
     });
- },
+ },  
  getConsumableByCategory: async(req,res)=>{
     const id =  req.params.id.substring(1)
-    const rows= await consumableService.getConsumableByCategory()
+    const rows= await consumableService.getConsumableByCategory(id)
     res.status(200).json({
         success : true,
         data: rows
@@ -26,7 +30,7 @@ const consumableController={
  getConsumableByUser: async(req,res)=>{
 
     const id= req.params.id.substring(1)
-    const rows = await consumableService.getConsumableByUser()
+    const rows = await consumableService.getConsumableByUser(id)
     res.status(200).json({
         success: true,
         data : rows
@@ -34,14 +38,16 @@ const consumableController={
     });
  },
  updateSingleConsumable: async(req,res)=>{
+
     const id = req.params.id.substring(1)
-    const {consumableName, amharicName, price, imageURL} = req.body
-    if(!consumableName || !amharicName || !price || !imageURL){
+   const {consumableName, amharicName, price, categoryId} = req.body
+
+   if(!consumableName || !amharicName || !id || !price || !categoryId){
         res.status(500).json({
             success : false,
             message: `All fields are required`
         })
-      const  isUpdated = await consumableService.updateSingleConsumable()
+      const  isUpdated = await consumableService.updateSingleConsumable(id)
     }
     if(!isUpdated){
         res.status(500).json({
@@ -57,39 +63,47 @@ const consumableController={
  },
 
  deleteSingleConsumable : async(req,res)=>{
-    const isDeleted = await consumableService.deleteSingleConsumable()
+    const isDeleted = await consumableService.deleteSingleConsumable(id)
     const id = req.params.id.substring(1)
     if(!isDeleted){
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
             message: `Fail to delete`
         })
     }
-    req.status(200).json(200)({
+    res.status(200).json(200)({
         success : true,
         message : `Consumable is deleted successfully`
     })
  },
  createSingleConsumable: async(req,res)=>{
-    const {consumableName, amharicName, price, imageURL } = req.body
-     if(!consumableName || !amharicName || !price || !imageURL){
+    //let newFileName = `http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}/uploads/`;
+  //  newFileName= "rrrrr"
+    //${req.file.filename}
+   // req.body.imageUrl = newFileName;
+   
+console.log(req.body);
+
+    const {consumableName, amharicName, price, categoryId } = req.body
+    
+     if(!consumableName || !amharicName || !price || !categoryId){
         res.status(500).json({
             success: false,
             message : `All fields are required`
         })
      }
-     const isCreated = await consumableService.createSingleConsumable()
+     const isCreated = await consumableService.createSingleConsumable(req.body)
      const id = req.params.id.substring(1)
      if(!isCreated){
-        res.status(500).json({
+       return res.status(500).json({
             success: false,
             message: `Fail to update`
         })
      }
-     res.status(200).json({
+   return   res.status(200).json({
         success: true,
         message: `Updated successfully`
      })
- }
+ } 
 }
 module.exports = consumableController;

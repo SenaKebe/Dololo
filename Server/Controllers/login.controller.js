@@ -17,7 +17,9 @@ const loginController=  {
                 message:`No user is found plase register first`
             })
         }
-       else{
+
+/*   task   register, update, insert , delete..........while performing take all the following firstname, lastname, age, sex also zip .env file
+ */      else{
 
         const userId = user[0].userId;
 
